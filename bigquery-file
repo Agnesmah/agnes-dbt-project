@@ -1,0 +1,1 @@
+SELECT * FROM `bigquery-demo-464207.Dataset1.dbt_customer`
