@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+    - name: jaffle_shop
+      description: This is a replica of the Postgres database used by our app
+      database: bigquery-demo-464207
+      schema: Dataset1
+      tables:
+          - name: dbt_customer
+            description: One record per customer.
+          - name: dbt_orders
+            description: One record per order. Includes cancelled and deleted orders.
