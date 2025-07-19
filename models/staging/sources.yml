@@ -14,6 +14,7 @@ sources:
             description: One record per customer.
             columns:
                 - name: customerid
+                  description: primary key for customer data
                   tests:
                       - unique
                       - not_null
