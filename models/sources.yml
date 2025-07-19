@@ -5,8 +5,25 @@ sources:
       description: This is a replica of the Postgres database used by our app
       database: bigquery-demo-464207
       schema: Dataset1
+      freshness: #make this a little more strict
+              warn_after: {count: 6, period: hour}
+              error_after: {count: 1, period: day}
+      loaded_at_field: etl_loaded_at
       tables:
           - name: dbt_customer
             description: One record per customer.
+            columns:
+                - name: customerid
+                  tests:
+                      - unique
+                      - not_null
+                      
+            freshness: null
           - name: dbt_orders
             description: One record per order. Includes cancelled and deleted orders.
+            columns:
+                - name: order_id
+                  tests:
+                      - unique
+                      - not_null
+            
