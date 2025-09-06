@@ -19,6 +19,7 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
+
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
@@ -35,10 +36,20 @@ clean-targets:         # directories to be removed by `dbt clean`
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
+seeds:
+  jaffle_shop:
+    employees:
+      file: employees.csv
+      header: true
+      quote_columns: true
+      delimiter: ','
+      
 models:
   jaffle_shop:
     marts:
       +materialized: table
+      +schema: data_mart
     staging:
       +materialized: view
+      +schema: staging
     

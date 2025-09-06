@@ -3,27 +3,27 @@ version: 2
 sources:
     - name: jaffle_shop
       description: This is a replica of the Postgres database used by our app
-      database: bigquery-demo-464207
-      schema: Dataset1
+      database: dbt-tutorial
+      schema: jaffle_shop
       freshness: #make this a little more strict
               warn_after: {count: 6, period: hour}
               error_after: {count: 1, period: day}
       loaded_at_field: etl_loaded_at
       tables:
-          - name: dbt_customer
+          - name: customers
             description: One record per customer.
             columns:
-                - name: customerid
+                - name: ID
                   description: primary key for customer data
                   tests:
                       - unique
                       - not_null
                       
             freshness: null
-          - name: dbt_orders
+          - name: orders
             description: One record per order. Includes cancelled and deleted orders.
             columns:
-                - name: order_id
+                - name: ID
                   tests:
                       - unique
                       - not_null

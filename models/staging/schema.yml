@@ -40,3 +40,6 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+
+  - name: stg_stripe__payment
+    description: "This model store all the payment transactions"

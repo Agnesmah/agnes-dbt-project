@@ -1,1 +1,1 @@
-SELECT * FROM `bigquery-demo-464207.Dataset1.dbt_customer`
+select * from `dbt-tutorial.jaffle_shop.customers`

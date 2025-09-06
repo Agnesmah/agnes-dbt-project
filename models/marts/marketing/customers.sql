@@ -6,6 +6,16 @@ orders as (
     select * from {{ ref('stg_orders')}}
 
 ),
+employees as (
+    select * from {{ ref('employees') }}
+),
+customer_employees as (
+    select 
+    customer_id,
+    employee_id,
+    email
+    from employees
+),
 customer_orders as (
 
     select
@@ -28,11 +38,14 @@ final as (
         customers.last_name,
         customer_orders.first_order_date,
         customer_orders.most_recent_order_date,
-        coalesce(customer_orders.number_of_orders, 0) as number_of_orders
+        coalesce(customer_orders.number_of_orders, 0) as number_of_orders,
+        customer_employees.employee_id,
+        customer_employees.email as employee_email
 
     from customers
 
     left join customer_orders using (customer_id)
+    left join customer_employees using (customer_id)
 
 )
 
