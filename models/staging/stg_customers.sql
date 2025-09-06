@@ -1,5 +1,5 @@
 select 
-customerid as customer_id,
-firstname as first_name,
-lastname as last_name
-from {{ source('jaffle_shop', 'dbt_customer') }}
+ID as customer_id,
+FIRST_NAME as first_name,
+LAST_NAME as last_name
+from {{ source('jaffle_shop', 'customers') }}

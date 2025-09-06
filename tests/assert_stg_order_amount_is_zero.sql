@@ -1,12 +1,10 @@
-with orders as (
-    select * from {{ ref('stg_orders') }}
+with payments as (
+    select * from {{ ref('stg_stripe__payment') }}
 )
 
-select 
-    order_id,
-    sum(amount) as total_amount
-from
-    orderr
-group by order_id
-having
-    total_amount = 0
+select
+  order_id,
+  sum(amount) as total_amount
+from payments
+group by 1
+having (total_amount < 0)
